@@ -22,7 +22,8 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
       time: '10:32 AM',
     ),
     ChatMessage(
-      text: 'I ordered a blue t-shirt but received a red one',
+      text:
+          "Yoo, what's up mate, I'm ordered a NIKE DRIP but received a normal one",
       isMe: true,
       time: '10:33 AM',
     ),
@@ -48,7 +49,8 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
           children: [
             const CircleAvatar(
               radius: 16,
-              backgroundImage: AssetImage('assets/images/shop.jpg'),
+              backgroundImage: AssetImage('assets/images/nike-logo.png'),
+              backgroundColor: Colors.transparent,
             ),
             const SizedBox(width: 8),
             const Text('Customer Service'),
@@ -79,7 +81,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                     ),
                     decoration: BoxDecoration(
                       color: message.isMe
-                          ? Colors.deepPurple
+                          ? Color.fromRGBO(53, 140, 23, 1)
                           : Colors.grey.withOpacity(0.2),
                       borderRadius: BorderRadius.circular(20),
                     ),
@@ -132,7 +134,7 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
                 ),
                 IconButton(
                   icon: const Icon(Icons.send),
-                  color: Colors.deepPurple,
+                  color: Color.fromRGBO(53, 140, 23, 1),
                   onPressed: () {
                     if (_messageController.text.isNotEmpty) {
                       setState(() {

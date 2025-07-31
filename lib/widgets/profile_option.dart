@@ -21,7 +21,10 @@ class ProfileOption extends StatelessWidget {
       elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: ListTile(
-        leading: Icon(icon, color: isLogout ? Colors.red : Colors.deepPurple),
+        leading: Icon(
+          icon,
+          color: isLogout ? Colors.red : Color.fromRGBO(53, 140, 23, 1),
+        ),
         title: Text(
           title,
           style: TextStyle(

@@ -36,6 +36,7 @@ class ProductDetailPage extends StatelessWidget {
                     product.name,
                     style: const TextStyle(
                       fontSize: 24,
+                      letterSpacing: -0.5,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -60,41 +61,54 @@ class ProductDetailPage extends StatelessWidget {
                   const SizedBox(height: 16),
                   const Text(
                     'Description',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: -0.5,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     product.description.isEmpty
                         ? 'This is a high-quality product made from premium materials. It offers great comfort and style for everyday wear. The design is modern and suitable for various occasions.'
                         : product.description,
-                    style: const TextStyle(color: Colors.grey, height: 1.5),
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      height: 1.5,
+                      letterSpacing: -0.5,
+                    ),
                   ),
                   const SizedBox(height: 16),
                   const Text(
-                    'Color',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    'Select Size',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: -0.5,
+                    ),
                   ),
-                  const SizedBox(height: 8),
-                  Row(
+                  GridView(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 4,
+                          mainAxisSpacing: 12,
+                          crossAxisSpacing: 12,
+                          childAspectRatio: 1.5,
+                        ),
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
                     children: [
-                      _buildColorOption(Colors.blue, true),
-                      _buildColorOption(Colors.red, false),
-                      _buildColorOption(Colors.black, false),
-                      _buildColorOption(Colors.green, false),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  const Text(
-                    'Size',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      _buildSizeOption('S', false),
-                      _buildSizeOption('M', true),
-                      _buildSizeOption('L', false),
-                      _buildSizeOption('XL', false),
+                      _buildSizeOption('EU 40', false),
+                      _buildSizeOption('EU 40,5', false),
+                      _buildSizeOption('EU 41', false),
+                      _buildSizeOption('EU 42', false),
+                      _buildSizeOption('EU 42,5', false),
+                      _buildSizeOption('EU 43', false),
+                      _buildSizeOption('EU 44', true),
+                      _buildSizeOption('EU 44,5', false),
+                      _buildSizeOption('EU 45', false),
+                      _buildSizeOption('EU 46', false),
+                      _buildSizeOption('EU 46,5', false),
                     ],
                   ),
                   const SizedBox(height: 24),
@@ -113,7 +127,7 @@ class ProductDetailPage extends StatelessWidget {
                             style: const TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
-                              color: Colors.deepPurple,
+                              color: Color.fromRGBO(53, 140, 23, 1),
                             ),
                           ),
                         ],
@@ -123,7 +137,7 @@ class ProductDetailPage extends StatelessWidget {
                         height: 50,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.deepPurple,
+                            backgroundColor: Color.fromRGBO(53, 140, 23, 1),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
@@ -140,6 +154,7 @@ class ProductDetailPage extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
+                              color: Colors.white,
                             ),
                           ),
                         ),
@@ -155,34 +170,13 @@ class ProductDetailPage extends StatelessWidget {
     );
   }
 
-  Widget _buildColorOption(Color color, bool selected) {
-    return Container(
-      margin: const EdgeInsets.only(right: 12),
-      width: 40,
-      height: 40,
-      decoration: BoxDecoration(
-        color: color,
-        shape: BoxShape.circle,
-        border: selected
-            ? Border.all(color: Colors.deepPurple, width: 3)
-            : null,
-      ),
-      child: selected
-          ? const Center(
-              child: Icon(Icons.check, color: Colors.white, size: 16),
-            )
-          : null,
-    );
-  }
-
   Widget _buildSizeOption(String size, bool selected) {
     return Container(
-      margin: const EdgeInsets.only(right: 12),
-      width: 40,
-      height: 40,
       decoration: BoxDecoration(
-        color: selected ? Colors.deepPurple : Colors.grey.withOpacity(0.2),
-        shape: BoxShape.circle,
+        color: selected
+            ? Color.fromRGBO(53, 140, 23, 1)
+            : Colors.grey.withOpacity(0.2),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Center(
         child: Text(

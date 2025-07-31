@@ -1,10 +1,11 @@
 // Import library-library yang diperlukan
 import 'package:flutter/material.dart'; // Library dasar Flutter untuk widget material design
-import 'package:curved_navigation_bar/curved_navigation_bar.dart'; // Untuk navigation bar dengan bentuk melengkung
-import 'package:badges/badges.dart'
-    as badges; // Untuk menampilkan badge/notifikasi count (dipakai sebagai alias 'badges')
-import 'package:flutter_rating_bar/flutter_rating_bar.dart'; // Untuk menampilkan rating bintang
-import 'package:clippy_flutter/clippy_flutter.dart'; // Untuk efek clippy/shape khusus pada widget
+// import 'package:curved_navigation_bar/curved_navigation_bar.dart'; // Untuk navigation bar dengan bentuk melengkung
+// import 'package:badges/badges.dart'
+    // as badges; // Untuk menampilkan badge/notifikasi count (dipakai sebagai alias 'badges')
+// import 'package:flutter_rating_bar/flutter_rating_bar.dart'; // Untuk menampilkan rating bintang
+// import 'package:clippy_flutter/clippy_flutter.dart'; // Untuk efek clippy/shape khusus pada widget
+import 'package:google_fonts/google_fonts.dart';
 import 'login_page.dart'; // Halaman login custom
 import 'home_page.dart'; // Halaman beranda
 import 'profile_page.dart'; // Halaman profil user
@@ -31,14 +32,30 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // MaterialApp adalah widget dasar yang mengimplementasikan material design
     return MaterialApp(
-      title: 'E-Commerce App', // Judul aplikasi (tampil di task manager)
+      title: 'Nike E-Commerce App',
       debugShowCheckedModeBanner:
           false, // Menyembunyikan banner debug di corner
       // ThemeData mendefinisikan tema dasar aplikasi
       theme: ThemeData(
-        primarySwatch: Colors
-            .deepPurple, // Warna utama aplikasi (membuat variasi warna otomatis)
-        fontFamily: 'Poppins', // Font default untuk seluruh teks dalam aplikasi
+        colorScheme:
+            ColorScheme.fromSwatch(
+              primarySwatch: Colors
+                  .grey, // Base for general app elements, could be white/grey
+              // accentColor: Colors.purple, // Deprecated, replaced by secondary
+            ).copyWith(
+              primary: Colors
+                  .orange, // This will be the primary color for interactive elements (e.g., focused TextFormField border, floating label)
+              secondary: Colors
+                  .redAccent, // Another accent color if needed for other widgets
+              surface:
+                  Colors.white, // Color for cards, sheets (like your login box)
+              onSurface: Colors.black87, // Text color on surface
+            ),
+        primarySwatch:
+            Colors.green, // Warna utama aplikasi (gunakan MaterialColor bawaan)
+        textTheme: GoogleFonts.interTextTheme(
+          Theme.of(context).textTheme,
+        ), // Font default untuk seluruh teks dalam aplikasi
         // Konfigurasi AppBar secara global
         appBarTheme: const AppBarTheme(
           elevation: 0, // Menghilangkan shadow di bawah AppBar

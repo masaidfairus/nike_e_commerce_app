@@ -1,4 +1,4 @@
-# 🛒 E-Commerce App
+# 🛒 NIKE E-Commerce App
 
 A modern Flutter application for seamless online shopping.  
 Beautiful UI, smooth navigation, and essential features for any e-commerce platform.
@@ -29,5 +29,5 @@ Beautiful UI, smooth navigation, and essential features for any e-commerce platf
 
 1. **Clone the repo**
    ```sh
-   git clone https://github.com/yourusername/e_commerce_app.git
+   git clone https://github.com/masaidfairus/nike_e_commerce_app.git
    cd e_commerce_app
