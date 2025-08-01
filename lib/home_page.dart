@@ -312,11 +312,7 @@ class _HomePageState extends State<HomePage> {
             selectedColor: Color.fromRGBO(121, 239, 82, 1),
           ),
           SalomonBottomBarItem(
-            icon: Icon(
-              Icons.chat,
-              size: 30,
-              color: Color.fromRGBO(53, 140, 23, 1),
-            ),
+            icon: Icon(Icons.chat, size: 30, color: Colors.black),
             title: Text(
               "Chat",
               style: TextStyle(
@@ -328,20 +324,12 @@ class _HomePageState extends State<HomePage> {
             selectedColor: Color.fromRGBO(121, 239, 82, 1),
           ),
           SalomonBottomBarItem(
-            icon: Icon(
-              Icons.shopping_cart,
-              size: 30,
-              color: Color.fromRGBO(53, 140, 23, 1),
-            ),
+            icon: Icon(Icons.shopping_cart, size: 30, color: Colors.black),
             title: Text("", style: TextStyle()),
             selectedColor: Colors.white,
           ),
           SalomonBottomBarItem(
-            icon: Icon(
-              Icons.person,
-              size: 30,
-              color: Color.fromRGBO(53, 140, 23, 1),
-            ),
+            icon: Icon(Icons.person, size: 30, color: Colors.black),
             title: Text(
               "Profile",
               style: TextStyle(

@@ -103,11 +103,7 @@ class _ChatListPageState extends State<ChatListPage> {
         },
         items: [
           SalomonBottomBarItem(
-            icon: Icon(
-              Icons.home,
-              size: 30,
-              color: Color.fromRGBO(53, 140, 23, 1),
-            ),
+            icon: Icon(Icons.home, size: 30, color: Colors.black),
             title: Text(
               "Home",
               style: TextStyle(
@@ -135,21 +131,13 @@ class _ChatListPageState extends State<ChatListPage> {
             selectedColor: Color.fromRGBO(121, 239, 82, 1),
           ),
           SalomonBottomBarItem(
-            icon: Icon(
-              Icons.shopping_cart,
-              size: 30,
-              color: Color.fromRGBO(53, 140, 23, 1),
-            ),
+            icon: Icon(Icons.shopping_cart, size: 30, color: Colors.black),
             //CURENTLY DUMMY aka. BUG HERE I CANT FIX IT SORRY
             title: Text("", style: TextStyle(fontSize: 14)),
             selectedColor: Colors.white,
           ),
           SalomonBottomBarItem(
-            icon: Icon(
-              Icons.person,
-              size: 30,
-              color: Color.fromRGBO(53, 140, 23, 1),
-            ),
+            icon: Icon(Icons.person, size: 30, color: Colors.black),
             title: Text(
               "Profile",
               style: TextStyle(
