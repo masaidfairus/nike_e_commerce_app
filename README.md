@@ -7,11 +7,14 @@ Beautiful UI, smooth navigation, and essential features for any e-commerce platf
 
 ## 🚀 Features
 
-- Curved navigation bar for intuitive browsing
+- Curved navigation bar for intuitive browsing (Salomon Bottom Bar)
 - Product ratings with interactive stars
 - Badges for cart and notifications
-- Cupertino-style icons for iOS look & feel
+- Profile management and authentication screens
+- Chat with customer service
+- Shopping cart and checkout flow
 - Responsive design for all devices
+- Cupertino-style icons for iOS look & feel
 
 ---
 
@@ -19,9 +22,10 @@ Beautiful UI, smooth navigation, and essential features for any e-commerce platf
 
 - [`flutter`](https://flutter.dev/)
 - [`cupertino_icons`](https://pub.dev/packages/cupertino_icons)
-- [`curved_navigation_bar`](https://pub.dev/packages/curved_navigation_bar)
+- [`salomon_bottom_bar`](https://pub.dev/packages/salomon_bottom_bar)
 - [`badges`](https://pub.dev/packages/badges)
 - [`flutter_rating_bar`](https://pub.dev/packages/flutter_rating_bar)
+- [`google_fonts`](https://pub.dev/packages/google_fonts)
 
 ---
 
@@ -30,4 +34,40 @@ Beautiful UI, smooth navigation, and essential features for any e-commerce platf
 1. **Clone the repo**
    ```sh
    git clone https://github.com/masaidfairus/nike_e_commerce_app.git
-   cd e_commerce_app
+   cd nike_e_commerce_app
+   ```
+
+2. **Install dependencies**
+   ```sh
+   flutter pub get
+   ```
+
+3. **Run the app**
+   ```sh
+   flutter run
+   ```
+
+---
+
+## 📂 Project Structure
+
+- `lib/` - Main Dart source files (UI, pages, widgets, models)
+- `assets/images/` - App images and icons
+- `test/` - Unit and widget tests
+- `android/`, `ios/`, `web/`, `linux/`, `macos/`, `windows/` - Platform-specific code
+
+---
+
+## ✨ Screenshots
+
+_Add screenshots of your app here!_
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+---
+
+##
