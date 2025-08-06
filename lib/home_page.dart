@@ -3,11 +3,8 @@ import 'package:badges/badges.dart' as badges;
 import 'package:e_commerce_app/models/product.dart';
 import 'package:e_commerce_app/product_detail_page.dart';
 import 'package:e_commerce_app/cart_page.dart';
-import 'package:e_commerce_app/profile_page.dart';
-import 'package:e_commerce_app/chat_list_page.dart';
 import 'package:e_commerce_app/widgets/product_card.dart' as pc;
 import 'package:e_commerce_app/widgets/trendy_product_card.dart' as tpc;
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 /*
 Widget HomePage adalah halaman utama aplikasi e-commerce yang menampilkan:
@@ -26,8 +23,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _currentIndex = 0; // Indeks untuk bottom navigation bar
-
   // Daftar produk best selling (data dummy)
   final List<Product> bestSellingProducts = [
     Product(
@@ -35,7 +30,7 @@ class _HomePageState extends State<HomePage> {
       name: 'Nike Air Max Dn SE',
       price: 180.00,
       image: 'assets/images/AIR-MAX-DN-SE.png',
-      rating: 4.6,
+      type: "Hardstyle Shoes",
       description:
           'The Air Max Dn features our Dynamic Air unit system of dual-pressure tubes, creating a responsive sensation with every step. This results in a futuristic design that’s comfortable enough to wear from day to night. Plus, this version sports a gradient treatment on the upper. Go ahead—feel the unreal.',
     ),
@@ -44,9 +39,18 @@ class _HomePageState extends State<HomePage> {
       name: 'Nike Zoom Vomero 5',
       price: 170.00,
       image: 'assets/images/NIKE-ZOOM-VOMERO-5.png',
-      rating: 4.8,
+      type: "Men's Shoes",
       description:
           'Carve a new lane for yourself in the Zoom Vomero 5—your go-to for depth, durability and easy styling. The richly layered design includes textiles, leather and plastic accents that nod to the Y2K aesthetic.',
+    ),
+    Product(
+      id: '3',
+      name: 'Kobe 6 Protro Green Apple',
+      price: 160.00,
+      image: 'assets/images/KOBE-6-PROTRO-GREEN.png',
+      type: "Basketball Shoes",
+      description:
+          "The Kobe 6 Protro is based on a favourite colourway originally released on Christmas Day 2010. It features a scaly, reptile-inspired upper with Lime Green colouring—a playful recolouring of Kobe's Black Mamba persona. Lower, sleeker and faster-looking than before, it's fitted with a large, flexible Air Zoom Turbo unit, responsive foam and scaled-down traction for improved court feel.",
     ),
   ];
 
@@ -56,7 +60,7 @@ class _HomePageState extends State<HomePage> {
       name: "Air Jordan 1 Retro High OG",
       price: 175.00,
       image: 'assets/images/AIR-JORDAN1.png',
-      rating: 4.8,
+      type: "Air Jordan Series",
       description:
           "The Air Jordan 1 Retro High remakes the classic sneaker, giving you a fresh look with a familiar feel. Premium materials with new colours and textures give modern expression to an all-time favourite.",
     ),
@@ -65,9 +69,18 @@ class _HomePageState extends State<HomePage> {
       name: "Nike Air Force 1 '07",
       price: 99.00,
       image: 'assets/images/NIKE-AF1.png',
-      rating: 4.8,
+      type: "Men's Shoes",
       description:
           "Comfortable, durable and timeless—it's number one for a reason. The classic '80s construction pairs smooth leather with bold details for style that tracks whether you're on court or on the go.",
+    ),
+    Product(
+      id: '3',
+      name: 'Nike Air Jordan 4 Rare Air',
+      price: 205.00,
+      image: 'assets/images/AIR-JORDAN4.avif',
+      type: "Air Jordan Series",
+      description:
+          'The AJ4 "Rare Air" pays homage to unexpected beginnings. When the AJ1 first released, it sparked worldwide acclaim—but not before one too many incorrect samples landed at retail partners around the globe, revealing the imperfect hodgepodge placements of logos, stitches and more. A fresh interpretation of the AJ4 "Rare Air" series is here. The premium mix of leather and suede combine with signature Jumpman DNA colors to honor Jordan heritage. Nike Air heel branding, stamped "Rare Air" insoles and removable tongue patches create a rare edition that reminds us how to turn flaws into awes.',
     ),
     // Produk lainnya...
   ];
@@ -147,7 +160,7 @@ class _HomePageState extends State<HomePage> {
                             'NOTHING BEATS THE CITY',
                             style: TextStyle(
                               fontSize: 20,
-                              fontWeight: FontWeight.bold,
+                              fontWeight: FontWeight.w900,
                               letterSpacing: -0.5,
                             ),
                           ),
@@ -163,6 +176,11 @@ class _HomePageState extends State<HomePage> {
                           ElevatedButton(
                             onPressed: () {
                               // Aksi ketika tombol ditekan
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text("We've send to your email"),
+                                ),
+                              );
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Color.fromRGBO(53, 140, 23, 1),
@@ -180,6 +198,149 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ],
+              ),
+
+              const SizedBox(height: 24), // Spacer
+
+              SizedBox(
+                width: double.infinity,
+                height: 500,
+                child: Stack(
+                  children: [
+                    Positioned.fill(
+                      child: Image.asset(
+                        'assets/images/featured-banner-1.avif',
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Jordan Trunner LX',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white70,
+                              letterSpacing: -0.5,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            'No Misses',
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: -0.5,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const Spacer(),
+
+                          // Shop Button
+                          ElevatedButton(
+                            onPressed: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text("Sorry this isn't avalaible in your country"),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              shape: const StadiumBorder(),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 32,
+                                vertical: 12,
+                              ),
+                              elevation: 0, // No shadow
+                            ),
+                            child: const Text(
+                              'Shop',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                width: double.infinity,
+                height: 500,
+                child: Stack(
+                  children: [
+                    Positioned.fill(
+                      child: Image.asset(
+                        'assets/images/featured-banner-2.avif',
+                        fit: BoxFit.fitWidth,
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Metcon 10',
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.white70,
+                              letterSpacing: -0.5,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            'Strength Starts Here',
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: -0.5,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const Spacer(),
+
+                          // Shop Button
+                          ElevatedButton(
+                            onPressed: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    "Sorry this isn't avalaible in your country",
+                                  ),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.white,
+                              shape: const StadiumBorder(),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 32,
+                                vertical: 12,
+                              ),
+                              elevation: 0, // No shadow
+                            ),
+                            child: const Text(
+                              'Shop',
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
 
               const SizedBox(height: 32), // Spacer
@@ -202,7 +363,7 @@ class _HomePageState extends State<HomePage> {
                   crossAxisCount: 2, // 2 kolom
                   crossAxisSpacing: 16, // Spasi antar kolom
                   mainAxisSpacing: 16, // Spasi antar baris
-                  childAspectRatio: 0.9, // Rasio tinggi terhadap lebar item
+                  childAspectRatio: 0.8, // Rasio tinggi terhadap lebar item
                 ),
                 itemCount: bestSellingProducts.length, // Jumlah produk
                 itemBuilder: (context, index) {
@@ -237,110 +398,34 @@ class _HomePageState extends State<HomePage> {
 
               const SizedBox(height: 16), // Spacer
 
-              GridView.builder(
-                shrinkWrap: true, // Menyesuaikan tinggi dengan konten
-                physics:
-                    const NeverScrollableScrollPhysics(), // Non-aktifkan scroll di dalam grid
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // 2 kolom
-                  crossAxisSpacing: 16, // Spasi antar kolom
-                  mainAxisSpacing: 16, // Spasi antar baris
-                  childAspectRatio: 0.7, // Rasio tinggi terhadap lebar item
+              SizedBox(
+                height: 220, // Adjust height as needed for your card
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: trendsProducts.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 16.0),
+                      child: tpc.TrendyProductCard(
+                        product: trendsProducts[index],
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ProductDetailPage(
+                                product: trendsProducts[index],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    );
+                  },
                 ),
-                itemCount: trendsProducts.length, // Jumlah produk
-                itemBuilder: (context, index) {
-                  // Widget TrendyProductCard untuk setiap produk
-                  return tpc.TrendyProductCard(
-                    product: trendsProducts[index],
-                    onTap: () {
-                      // Navigasi ke halaman detail produk ketika diklik
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              ProductDetailPage(product: trendsProducts[index]),
-                        ),
-                      );
-                    },
-                  );
-                },
               ),
             ],
           ),
         ),
-      ),
-
-      bottomNavigationBar: SalomonBottomBar(
-        currentIndex: _currentIndex, // Indeks aktif
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-
-          if (index == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ChatListPage()),
-            );
-          } else if (index == 2) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const CartPage()),
-            );
-          } else if (index == 3) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ProfilePage()),
-            );
-          }
-        },
-        items: [
-          SalomonBottomBarItem(
-            icon: Icon(
-              Icons.home,
-              size: 30,
-              color: Color.fromRGBO(53, 140, 23, 1),
-            ),
-            title: Text(
-              "Home",
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(53, 140, 23, 1),
-              ),
-            ),
-            selectedColor: Color.fromRGBO(121, 239, 82, 1),
-          ),
-          SalomonBottomBarItem(
-            icon: Icon(Icons.chat, size: 30, color: Colors.black),
-            title: Text(
-              "Chat",
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(53, 140, 23, 1),
-              ),
-            ),
-            selectedColor: Color.fromRGBO(121, 239, 82, 1),
-          ),
-          SalomonBottomBarItem(
-            icon: Icon(Icons.shopping_cart, size: 30, color: Colors.black),
-            title: Text("", style: TextStyle()),
-            selectedColor: Colors.white,
-          ),
-          SalomonBottomBarItem(
-            icon: Icon(Icons.person, size: 30, color: Colors.black),
-            title: Text(
-              "Profile",
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(53, 140, 23, 1),
-              ),
-            ),
-            selectedColor: Color.fromRGBO(85, 187, 51, 1),
-          ),
-        ],
       ),
     );
   }

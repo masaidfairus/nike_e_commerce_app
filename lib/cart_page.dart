@@ -17,7 +17,7 @@ class _CartPageState extends State<CartPage> {
         name: 'Nike Air Max Dn SE',
         price: 180.00,
         image: 'assets/images/AIR-MAX-DN-SE.png',
-        rating: 4.6,
+        type: "Hardstyle Shoes",
         description:
             'The Air Max Dn features our Dynamic Air unit system of dual-pressure tubes, creating a responsive sensation with every step. This results in a futuristic design that’s comfortable enough to wear from day to night. Plus, this version sports a gradient treatment on the upper. Go ahead—feel the unreal.',
       ),
@@ -30,7 +30,7 @@ class _CartPageState extends State<CartPage> {
         name: 'Air Jordan 1 Retro High OG"',
         price: 175.00,
         image: 'assets/images/AIR-JORDAN1.png',
-        rating: 4.8,
+        type: "Men's Shoes",
         description:
             "The Air Jordan 1 Retro High remakes the classic sneaker, giving you a fresh look with a familiar feel. Premium materials with new colours and textures give modern expression to an all-time favourite.",
       ),
@@ -43,7 +43,7 @@ class _CartPageState extends State<CartPage> {
         name: 'Nike MAG Back to the Future',
         price: 19450.00,
         image: 'assets/images/NIKE-MAG.png',
-        rating: 5.0,
+        type: "Collector's Shoes",
         description:
             "Immortalized in the 1989 film 'Back to the Future II,' the Nike Mag was finally released to the public in September 2011. Though the shoe lacks the self-lacing feature, it’s an aesthetic match to its filmic counterpart, complete with an electroluminescent Nike logo on the strap and glowing LED arrays at the midsole and heel. The 2011 production run was limited to 1500 pairs and released through charity eBay auctions where proceeds went directly to Michael J. Fox’s Foundation in finding a cure for Parkinson's Disease.",
       ),

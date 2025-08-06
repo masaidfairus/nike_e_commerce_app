@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:e_commerce_app/widgets/profile_option.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
-import 'package:e_commerce_app/chat_list_page.dart';
-import 'package:e_commerce_app/cart_page.dart';
-import 'package:e_commerce_app/home_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';  
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -13,50 +10,101 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  int _currentIndex = 3;
+
+  String? savedEmail; // 🔧 BARU
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSavedEmail(); // 🔧 AMBIL email saat halaman dibuka
+  }
+
+  // 🔧 BARU: Load email dari shared preferences
+  Future<void> _loadSavedEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      savedEmail = prefs.getString('user_email') ?? 'No email saved';
+    });
+  }
+
+  // 🔧 BARU: Hapus email saat logout
+  Future<void> _clearSavedEmail() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('user_email');
+    setState(() {
+      savedEmail = null;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Profile'),
+        title: const Text('Profile'),
+        surfaceTintColor: Colors.white,
+        iconTheme: const IconThemeData(color: Colors.white),
+        actionsIconTheme: const IconThemeData(color: Colors.white),
+        titleTextStyle: const TextStyle(
+          color: Colors.white,
+          fontSize: 20,
+          fontWeight: FontWeight.w500,
+        ),
+        backgroundColor: Color.fromRGBO(53, 140, 23, 1),
         actions: [IconButton(icon: const Icon(Icons.edit), onPressed: () {})],
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 20),
-            const CircleAvatar(
-              radius: 50,
-              backgroundImage: AssetImage('assets/images/profile.jpg'),
-            ),
-            const SizedBox(height: 16),
-            const Text(
-              'Muslimin Ronaldo',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 8),
-            const Text(
-              'ronaldo@nike.com',
-              style: TextStyle(fontSize: 16, color: Colors.grey),
+            SizedBox(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height * 0.27,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(53, 140, 23, 1),
+                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40), bottomRight: Radius.circular(40))
+                ),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 20),
+                    const CircleAvatar(
+                      radius: 50,
+                      backgroundImage: AssetImage('assets/images/profile.jpg'),
+                    ),
+                    const SizedBox(height: 16),
+                    const Text(
+                      'Muslimin Ronaldo',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      savedEmail ?? 'Loading...',
+                      style: const TextStyle(fontSize: 16, color: Colors.white70),
+                    ),
+                  ],
+                ),
+              ),
             ),
             const SizedBox(height: 30),
             ProfileOption(
               icon: Icons.person,
-              title: 'Edit Profile',
+              title: 'My Profile',
               onTap: () {},
             ),
             ProfileOption(
-              icon: Icons.lock,
-              title: 'Change Password',
+              icon: Icons.location_on,
+              title: 'Address Management',
               onTap: () {},
             ),
             ProfileOption(
-              icon: Icons.notifications,
-              title: 'Notifications',
+              icon: Icons.support_agent_rounded,
+              title: 'Help & Support',
               onTap: () {},
             ),
-            ProfileOption(icon: Icons.help, title: 'Help', onTap: () {}),
+            ProfileOption(icon: Icons.settings, title: 'Setting', onTap: () {}),
             ProfileOption(
               icon: Icons.logout,
               title: 'Logout',
@@ -67,79 +115,6 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: SalomonBottomBar(
-        currentIndex: _currentIndex, // Indeks aktif
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-
-          if (index == 0) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const HomePage()),
-            );
-          } else if (index == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const ChatListPage()),
-            );
-          } else if (index == 2) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const CartPage()),
-            );
-          }
-        },
-        items: [
-          SalomonBottomBarItem(
-            icon: Icon(Icons.home, size: 30, color: Colors.black),
-            title: Text(
-              "Home",
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(53, 140, 23, 1),
-              ),
-            ),
-            selectedColor: Color.fromRGBO(121, 239, 82, 1),
-          ),
-          SalomonBottomBarItem(
-            icon: Icon(Icons.chat, size: 30, color: Colors.black),
-            title: Text(
-              "Chat",
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(53, 140, 23, 1),
-              ),
-            ),
-            selectedColor: Color.fromRGBO(121, 239, 82, 1),
-          ),
-          SalomonBottomBarItem(
-            icon: Icon(Icons.shopping_cart, size: 30, color: Colors.black),
-            //CURENTLY DUMMY aka. BUG HERE I CANT FIX IT SORRY
-            title: Text("", style: TextStyle(fontSize: 14)),
-            selectedColor: Colors.white,
-          ),
-          SalomonBottomBarItem(
-            icon: Icon(
-              Icons.person,
-              size: 30,
-              color: Color.fromRGBO(53, 140, 23, 1),
-            ),
-            title: Text(
-              "Profile",
-              style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(53, 140, 23, 1),
-              ),
-            ),
-            selectedColor: Color.fromRGBO(85, 187, 51, 1),
-          ),
-        ],
       ),
     );
   }
@@ -156,8 +131,9 @@ class _ProfilePageState extends State<ProfilePage> {
             child: const Text('Cancel'),
           ),
           TextButton(
-            onPressed: () {
+            onPressed: () async {
               Navigator.pop(context);
+              await _clearSavedEmail();
               Navigator.pushReplacementNamed(context, '/');
             },
             child: const Text('Logout', style: TextStyle(color: Colors.red)),

@@ -40,6 +40,9 @@ dependencies:
   clippy_flutter: ^2.0.0-nullsafety.1
   salomon_bottom_bar: ^3.3.2
   google_fonts: ^6.2.1
+  flutter_cart: ^0.0.9
+  provider: ^6.1.5
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   rename: ^2.1.1

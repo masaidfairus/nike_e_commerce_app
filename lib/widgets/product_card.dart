@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:e_commerce_app/models/product.dart';
 
 class ProductCard extends StatelessWidget {
   final Product product;
   final VoidCallback onTap;
-
   const ProductCard({super.key, required this.product, required this.onTap});
 
   @override
@@ -34,19 +32,18 @@ class ProductCard extends StatelessWidget {
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     letterSpacing: -0.5,
-                    fontSize: 16,
+                    fontSize: 18,
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 4),
-                RatingBarIndicator(
-                  rating: product.rating,
-                  itemBuilder: (context, index) =>
-                      const Icon(Icons.star, color: Colors.amber),
-                  itemCount: 5,
-                  itemSize: 16.0,
-                  direction: Axis.horizontal,
+                Text(
+                  product.type,
+                  style: const TextStyle(
+                    letterSpacing: -0.5,
+                    fontSize: 14,
+                  ),
                 ),
                 const SizedBox(height: 4),
                 Text(
@@ -54,7 +51,7 @@ class ProductCard extends StatelessWidget {
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     letterSpacing: -0.5,
-                    fontSize: 18,
+                    fontSize: 20,
                     color: Color.fromRGBO(53, 140, 23, 1),
                   ),
                 ),

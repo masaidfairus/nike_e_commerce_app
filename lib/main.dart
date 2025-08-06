@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart'; // Library dasar Flutter untuk widget material design
 // import 'package:curved_navigation_bar/curved_navigation_bar.dart'; // Untuk navigation bar dengan bentuk melengkung
 // import 'package:badges/badges.dart'
-    // as badges; // Untuk menampilkan badge/notifikasi count (dipakai sebagai alias 'badges')
+// as badges; // Untuk menampilkan badge/notifikasi count (dipakai sebagai alias 'badges')
 // import 'package:flutter_rating_bar/flutter_rating_bar.dart'; // Untuk menampilkan rating bintang
 // import 'package:clippy_flutter/clippy_flutter.dart'; // Untuk efek clippy/shape khusus pada widget
 import 'package:google_fonts/google_fonts.dart';
@@ -13,6 +13,8 @@ import 'chat_list_page.dart'; // Halaman daftar chat
 import 'chat_detail_page.dart'; // Halaman detail percakapan
 import 'product_detail_page.dart'; // Halaman detail produk
 import 'cart_page.dart'; // Halaman keranjang belanja
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+
 
 // Fungsi main() adalah titik masuk utama aplikasi Flutter
 void main() {
@@ -51,20 +53,13 @@ class MyApp extends StatelessWidget {
                   Colors.white, // Color for cards, sheets (like your login box)
               onSurface: Colors.black87, // Text color on surface
             ),
-        primarySwatch:
-            Colors.green, // Warna utama aplikasi (gunakan MaterialColor bawaan)
-        textTheme: GoogleFonts.interTextTheme(
-          Theme.of(context).textTheme,
-        ), // Font default untuk seluruh teks dalam aplikasi
-        // Konfigurasi AppBar secara global
+        primarySwatch: Colors.green,
+        textTheme: GoogleFonts.interTextTheme(Theme.of(context).textTheme),
         appBarTheme: const AppBarTheme(
-          elevation: 0, // Menghilangkan shadow di bawah AppBar
-          centerTitle: true, // Judul AppBar di tengah
-          iconTheme: IconThemeData(
-            color: Colors.black,
-          ), // Warna icon AppBar hitam
+          elevation: 0,
+          centerTitle: true,
+          iconTheme: IconThemeData(color: Colors.black),
           titleTextStyle: TextStyle(
-            // Style teks judul AppBar
             color: Colors.black,
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -95,6 +90,89 @@ class MyApp extends StatelessWidget {
 
         '/cart': (context) => const CartPage(), // Route ke halaman keranjang
       },
+    );
+  }
+}
+
+class MainNavigationPage extends StatefulWidget {
+  const MainNavigationPage({super.key});
+
+  @override
+  State<MainNavigationPage> createState() => _MainNavigationPageState();
+}
+
+class _MainNavigationPageState extends State<MainNavigationPage> {
+  int _currentIndex = 0;
+
+  final List<Widget> _pages = [
+    const HomePage(),
+    const ChatListPage(),
+    const CartPage(),
+    const ProfilePage(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: IndexedStack(index: _currentIndex, children: _pages),
+      bottomNavigationBar: SalomonBottomBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        items: [
+          SalomonBottomBarItem(
+            icon: Icon(
+              Icons.home,
+              size: 30,
+              color: _currentIndex == 0 ? Color(0xFF358C17) : Colors.black,
+            ),
+            title: Text(
+              "Home",
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+            selectedColor: Color(0xFF358C17),
+          ),
+          SalomonBottomBarItem(
+            icon: Icon(
+              Icons.chat,
+              size: 30,
+              color: _currentIndex == 1 ? Color(0xFF358C17) : Colors.black,
+            ),
+            title: Text(
+              "Chat",
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+            selectedColor: Color(0xFF358C17),
+          ),
+          SalomonBottomBarItem(
+            icon: Icon(
+              Icons.shopping_cart,
+              size: 30,
+              color: _currentIndex == 2 ? Color(0xFF358C17) : Colors.black,
+            ),
+            title: Text(
+              "Cart",
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+            selectedColor: Color(0xFF358C17),
+          ),
+          SalomonBottomBarItem(
+            icon: Icon(
+              Icons.person,
+              size: 30,
+              color: _currentIndex == 3 ? Color(0xFF358C17) : Colors.black,
+            ),
+            title: Text(
+              "Profile",
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+            selectedColor: Color(0xFF358C17),
+          ),
+        ],
+      ),
     );
   }
 }

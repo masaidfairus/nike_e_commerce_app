@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+// import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:e_commerce_app/models/product.dart';
 
 class ProductDetailPage extends StatelessWidget {
@@ -32,6 +32,49 @@ class ProductDetailPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Color.fromRGBO(53, 140, 23, 1),
+                          ),
+                        ),
+                        child: Image.asset(
+                          product.image,
+                          width: 65,
+                          height: 65,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Image.asset(
+                        product.image,
+                        width: 65,
+                        height: 65,
+                        fit: BoxFit.cover,
+                      ),
+                      Image.asset(
+                        product.image,
+                        width: 65,
+                        height: 65,
+                        fit: BoxFit.cover,
+                      ),
+                      Image.asset(
+                        product.image,
+                        width: 65,
+                        height: 65,
+                        fit: BoxFit.cover,
+                      ),
+                      Image.asset(
+                        product.image,
+                        width: 65,
+                        height: 65,
+                        fit: BoxFit.cover,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
                   Text(
                     product.name,
                     style: const TextStyle(
@@ -40,25 +83,28 @@ class ProductDetailPage extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+                  Text(
+                    product.type,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: Colors.black45,
+                      letterSpacing: -0.5,
+                    ),
+                  ),
                   const SizedBox(height: 8),
                   Row(
                     children: [
-                      RatingBarIndicator(
-                        rating: product.rating,
-                        itemBuilder: (context, index) =>
-                            const Icon(Icons.star, color: Colors.amber),
-                        itemCount: 5,
-                        itemSize: 20.0,
-                        direction: Axis.horizontal,
-                      ),
-                      const SizedBox(width: 8),
                       Text(
-                        '${product.rating} (120 reviews)',
-                        style: const TextStyle(color: Colors.grey),
+                        '\$${product.price.toStringAsFixed(2)}',
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromRGBO(53, 140, 23, 1),
+                        ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 20),
                   const Text(
                     'Description',
                     style: TextStyle(
@@ -111,50 +157,34 @@ class ProductDetailPage extends StatelessWidget {
                       _buildSizeOption('EU 46,5', false),
                     ],
                   ),
-                  const SizedBox(height: 24),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Price',
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                          Text(
-                            '\$${product.price.toStringAsFixed(2)}',
-                            style: const TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(53, 140, 23, 1),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 200,
-                        height: 50,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromRGBO(53, 140, 23, 1),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Product added to cart'),
+                      Expanded(
+                        child: SizedBox(
+                          height: 50,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color.fromRGBO(53, 140, 23, 1),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                            );
-                          },
-                          child: const Text(
-                            'Add to Cart',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                            ),
+                            onPressed: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text('Product added to cart'),
+                                ),
+                              );
+                            },
+                            child: const Text(
+                              'Add to Cart',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),

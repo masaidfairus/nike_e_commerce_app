@@ -12,14 +12,10 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
   final TextEditingController _messageController = TextEditingController();
   final List<ChatMessage> _messages = [
     ChatMessage(
-      text: 'Hello, I have a question about my order',
-      isMe: true,
-      time: '10:30 AM',
-    ),
-    ChatMessage(
-      text: 'Hello, how can I help you?',
+      text:
+          'I apologize for the inconvenience. We can arrange a return and send you the correct item.',
       isMe: false,
-      time: '10:32 AM',
+      time: '10:35 AM',
     ),
     ChatMessage(
       text:
@@ -28,10 +24,14 @@ class _ChatDetailPageState extends State<ChatDetailPage> {
       time: '10:33 AM',
     ),
     ChatMessage(
-      text:
-          'I apologize for the inconvenience. We can arrange a return and send you the correct item.',
+      text: 'Hello, how can I help you?',
       isMe: false,
-      time: '10:35 AM',
+      time: '10:32 AM',
+    ),
+    ChatMessage(
+      text: 'Hello, I have a question about my order',
+      isMe: true,
+      time: '10:30 AM',
     ),
   ];
 

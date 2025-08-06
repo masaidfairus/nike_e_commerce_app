@@ -1,6 +1,7 @@
 // Import library material design Flutter dan halaman home
+import 'package:e_commerce_app/main.dart';
 import 'package:flutter/material.dart';
-import 'package:e_commerce_app/home_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // LoginPage adalah StatefulWidget karena membutuhkan state management
 // untuk form input dan toggle visibility password
@@ -24,6 +25,22 @@ class _LoginPageState extends State<LoginPage> {
   bool _isObscure = true;
 
   // Method dispose untuk membersihkan controller ketika widget dihapus
+
+  Future<void> _saveEmailLocally(String email) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('user_email', email);
+  }
+
+  void _handleLogin() async {
+    if (_formKey.currentState!.validate()) {
+      await _saveEmailLocally(_emailController.text.trim());
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const MainNavigationPage()),
+      );
+    }
+  }
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -163,12 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                               // Validasi form saat tombol ditekan
                               if (_formKey.currentState!.validate()) {
                                 // Navigasi ke HomePage dan ganti halaman saat ini
-                                Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const HomePage(),
-                                  ),
-                                );
+                                _handleLogin();
                               }
                             },
                             child: const Text(
