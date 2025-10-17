@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+// import 'package:flutter_rating_bar/flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:e_commerce_app/models/product.dart';
 
 class ProductDetailPage extends StatelessWidget {
@@ -7,8 +7,21 @@ class ProductDetailPage extends StatelessWidget {
 
   const ProductDetailPage({super.key, required this.product});
 
+  double _calculateGridViewHeight(
+    int itemCount,
+    double childAspectRatio,
+    double mainAxisSpacing,
+  ) {
+    const crossAxisCount = 4;
+    final numRows = (itemCount / crossAxisCount).ceil();
+    const itemReferenceHeight = 40.0;
+    return (numRows * itemReferenceHeight) + ((numRows - 1) * mainAxisSpacing);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final gridHeight = _calculateGridViewHeight(11, 1.5, 12);
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -38,7 +51,7 @@ class ProductDetailPage extends StatelessWidget {
                       Container(
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: Color.fromRGBO(53, 140, 23, 1),
+                            color: const Color.fromRGBO(53, 140, 23, 1),
                           ),
                         ),
                         child: Image.asset(
@@ -133,29 +146,32 @@ class ProductDetailPage extends StatelessWidget {
                       letterSpacing: -0.5,
                     ),
                   ),
-                  GridView(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 4,
-                          mainAxisSpacing: 12,
-                          crossAxisSpacing: 12,
-                          childAspectRatio: 1.5,
-                        ),
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: [
-                      _buildSizeOption('EU 40', false),
-                      _buildSizeOption('EU 40,5', false),
-                      _buildSizeOption('EU 41', false),
-                      _buildSizeOption('EU 42', false),
-                      _buildSizeOption('EU 42,5', false),
-                      _buildSizeOption('EU 43', false),
-                      _buildSizeOption('EU 44', true),
-                      _buildSizeOption('EU 44,5', false),
-                      _buildSizeOption('EU 45', false),
-                      _buildSizeOption('EU 46', false),
-                      _buildSizeOption('EU 46,5', false),
-                    ],
+                  SizedBox(
+                    height: gridHeight,
+                    child: GridView(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4,
+                            mainAxisSpacing: 12,
+                            crossAxisSpacing: 12,
+                            childAspectRatio: 1.5,
+                          ),
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: [
+                        _buildSizeOption('EU 40', false),
+                        _buildSizeOption('EU 40,5', false),
+                        _buildSizeOption('EU 41', false),
+                        _buildSizeOption('EU 42', false),
+                        _buildSizeOption('EU 42,5', false),
+                        _buildSizeOption('EU 43', false),
+                        _buildSizeOption('EU 44', true),
+                        _buildSizeOption('EU 44,5', false),
+                        _buildSizeOption('EU 45', false),
+                        _buildSizeOption('EU 46', false),
+                        _buildSizeOption('EU 46,5', false),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 10),
                   Row(
@@ -166,7 +182,12 @@ class ProductDetailPage extends StatelessWidget {
                           height: 50,
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color.fromRGBO(53, 140, 23, 1),
+                              backgroundColor: const Color.fromRGBO(
+                                53,
+                                140,
+                                23,
+                                1,
+                              ),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10),
                               ),
@@ -204,7 +225,7 @@ class ProductDetailPage extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: selected
-            ? Color.fromRGBO(53, 140, 23, 1)
+            ? const Color.fromRGBO(53, 140, 23, 1)
             : Colors.grey.withOpacity(0.2),
         borderRadius: BorderRadius.circular(10),
       ),

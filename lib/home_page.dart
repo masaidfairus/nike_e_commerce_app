@@ -153,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           const Text(
                             'Just In',
-                            style: TextStyle(fontSize: 16, letterSpacing: -0.5),
+                            style: TextStyle(fontSize: 16, letterSpacing: -0.5,),
                           ),
                           const SizedBox(height: 4), // Spasi antara teks
                           const Text(
@@ -162,6 +162,7 @@ class _HomePageState extends State<HomePage> {
                               fontSize: 20,
                               fontWeight: FontWeight.w900,
                               letterSpacing: -0.5,
+                              
                             ),
                           ),
                           const Text(

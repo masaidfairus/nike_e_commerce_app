@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:e_commerce_app/chat_detail_page.dart';
 
-class ChatListPage extends StatefulWidget {
+class ChatListPage extends StatelessWidget {
+  // Changed to StatelessWidget
   const ChatListPage({super.key});
-
-  @override
-  State<ChatListPage> createState() => _ChatListPageState();
-}
-
-class _ChatListPageState extends State<ChatListPage> {
 
   @override
   Widget build(BuildContext context) {
