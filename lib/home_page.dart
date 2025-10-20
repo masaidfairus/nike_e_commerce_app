@@ -14,17 +14,12 @@ Widget HomePage adalah halaman utama aplikasi e-commerce yang menampilkan:
 - Bottom navigation bar dengan efek melengkung
 */
 
-// HomePage adalah StatefulWidget karena memerlukan perubahan state (untuk bottom navigation)
-class HomePage extends StatefulWidget {
+// HomePage diubah menjadi StatelessWidget karena tidak ada state yang perlu diubah di dalamnya.
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  // Daftar produk best selling (data dummy)
-  final List<Product> bestSellingProducts = [
+  // Daftar produk best selling (data dummy) dipindahkan ke sini
+  final List<Product> bestSellingProducts = const [
     Product(
       id: '1',
       name: 'Nike Air Max Dn SE',
@@ -54,7 +49,7 @@ class _HomePageState extends State<HomePage> {
     ),
   ];
 
-  final List<Product> trendsProducts = [
+  final List<Product> trendsProducts = const [
     Product(
       id: '1',
       name: "Air Jordan 1 Retro High OG",
@@ -92,6 +87,9 @@ class _HomePageState extends State<HomePage> {
   */
   @override
   Widget build(BuildContext context) {
+    // Digunakan untuk membuat widget responsif (mengatasi overflow)
+    final screenHeight = MediaQuery.of(context).size.height;
+
     // Scaffold adalah struktur dasar layout material design
     return Scaffold(
       // AppBar: Bagian atas halaman yang berisi judul dan action buttons
@@ -153,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           const Text(
                             'Just In',
-                            style: TextStyle(fontSize: 16, letterSpacing: -0.5,),
+                            style: TextStyle(fontSize: 16, letterSpacing: -0.5),
                           ),
                           const SizedBox(height: 4), // Spasi antara teks
                           const Text(
@@ -162,7 +160,6 @@ class _HomePageState extends State<HomePage> {
                               fontSize: 20,
                               fontWeight: FontWeight.w900,
                               letterSpacing: -0.5,
-                              
                             ),
                           ),
                           const Text(
@@ -184,7 +181,12 @@ class _HomePageState extends State<HomePage> {
                               );
                             },
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Color.fromRGBO(53, 140, 23, 1),
+                              backgroundColor: const Color.fromRGBO(
+                                53,
+                                140,
+                                23,
+                                1,
+                              ),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(100),
                               ),
@@ -202,10 +204,10 @@ class _HomePageState extends State<HomePage> {
               ),
 
               const SizedBox(height: 24), // Spacer
-
+              // Mengatasi overflow: Menggunakan persentase tinggi layar (misalnya 65%)
               SizedBox(
                 width: double.infinity,
-                height: 500,
+                height: screenHeight * 0.65, // Dibuat responsif
                 child: Stack(
                   children: [
                     Positioned.fill(
@@ -228,9 +230,9 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           const SizedBox(height: 4),
-                          Text(
+                          const Text(
                             'No Misses',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               letterSpacing: -0.5,
@@ -244,7 +246,9 @@ class _HomePageState extends State<HomePage> {
                             onPressed: () {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 const SnackBar(
-                                  content: Text("Sorry this isn't avalaible in your country"),
+                                  content: Text(
+                                    "Sorry this isn't avalaible in your country",
+                                  ),
                                 ),
                               );
                             },
@@ -272,9 +276,10 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
+              // Mengatasi overflow: Menggunakan persentase tinggi layar (misalnya 65%)
               SizedBox(
                 width: double.infinity,
-                height: 500,
+                height: screenHeight * 0.65, // Dibuat responsif
                 child: Stack(
                   children: [
                     Positioned.fill(
@@ -297,9 +302,9 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           const SizedBox(height: 4),
-                          Text(
+                          const Text(
                             'Strength Starts Here',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
                               letterSpacing: -0.5,
