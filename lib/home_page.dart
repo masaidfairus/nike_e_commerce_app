@@ -16,15 +16,15 @@ Widget HomePage adalah halaman utama aplikasi e-commerce yang menampilkan:
 
 // HomePage diubah menjadi StatelessWidget karena tidak ada state yang perlu diubah di dalamnya.
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({super.key});
 
   // Daftar produk best selling (data dummy) dipindahkan ke sini
-  final List<Product> bestSellingProducts = const [
+  final List<Product> bestSellingProducts = [
     Product(
       id: '1',
       name: 'Nike Air Max Dn SE',
       price: 180.00,
-      image: 'assets/images/AIR-MAX-DN-SE.png',
+      image: 'assets/images/AIR-MAX-DN-SE.jpg',
       type: "Hardstyle Shoes",
       description:
           'The Air Max Dn features our Dynamic Air unit system of dual-pressure tubes, creating a responsive sensation with every step. This results in a futuristic design that’s comfortable enough to wear from day to night. Plus, this version sports a gradient treatment on the upper. Go ahead—feel the unreal.',
@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
       id: '2',
       name: 'Nike Zoom Vomero 5',
       price: 170.00,
-      image: 'assets/images/NIKE-ZOOM-VOMERO-5.png',
+      image: 'assets/images/NIKE-ZOOM-VOMERO-5.jpg',
       type: "Men's Shoes",
       description:
           'Carve a new lane for yourself in the Zoom Vomero 5—your go-to for depth, durability and easy styling. The richly layered design includes textiles, leather and plastic accents that nod to the Y2K aesthetic.',
@@ -42,19 +42,19 @@ class HomePage extends StatelessWidget {
       id: '3',
       name: 'Kobe 6 Protro Green Apple',
       price: 160.00,
-      image: 'assets/images/KOBE-6-PROTRO-GREEN.png',
+      image: 'assets/images/KOBE-6-PROTRO-GREEN.jpg',
       type: "Basketball Shoes",
       description:
           "The Kobe 6 Protro is based on a favourite colourway originally released on Christmas Day 2010. It features a scaly, reptile-inspired upper with Lime Green colouring—a playful recolouring of Kobe's Black Mamba persona. Lower, sleeker and faster-looking than before, it's fitted with a large, flexible Air Zoom Turbo unit, responsive foam and scaled-down traction for improved court feel.",
     ),
   ];
 
-  final List<Product> trendsProducts = const [
+  final List<Product> trendsProducts = [
     Product(
       id: '1',
       name: "Air Jordan 1 Retro High OG",
       price: 175.00,
-      image: 'assets/images/AIR-JORDAN1.png',
+      image: 'assets/images/AIR-JORDAN1.jpg',
       type: "Air Jordan Series",
       description:
           "The Air Jordan 1 Retro High remakes the classic sneaker, giving you a fresh look with a familiar feel. Premium materials with new colours and textures give modern expression to an all-time favourite.",
@@ -63,7 +63,7 @@ class HomePage extends StatelessWidget {
       id: '2',
       name: "Nike Air Force 1 '07",
       price: 99.00,
-      image: 'assets/images/NIKE-AF1.png',
+      image: 'assets/images/NIKE-AF1.jpg',
       type: "Men's Shoes",
       description:
           "Comfortable, durable and timeless—it's number one for a reason. The classic '80s construction pairs smooth leather with bold details for style that tracks whether you're on court or on the go.",
@@ -72,7 +72,7 @@ class HomePage extends StatelessWidget {
       id: '3',
       name: 'Nike Air Jordan 4 Rare Air',
       price: 205.00,
-      image: 'assets/images/AIR-JORDAN4.avif',
+      image: 'assets/images/AIR-JORDAN4.jpg',
       type: "Air Jordan Series",
       description:
           'The AJ4 "Rare Air" pays homage to unexpected beginnings. When the AJ1 first released, it sparked worldwide acclaim—but not before one too many incorrect samples landed at retail partners around the globe, revealing the imperfect hodgepodge placements of logos, stitches and more. A fresh interpretation of the AJ4 "Rare Air" series is here. The premium mix of leather and suede combine with signature Jumpman DNA colors to honor Jordan heritage. Nike Air heel branding, stamped "Rare Air" insoles and removable tongue patches create a rare edition that reminds us how to turn flaws into awes.',
@@ -211,8 +211,7 @@ class HomePage extends StatelessWidget {
                 child: Stack(
                   children: [
                     Positioned.fill(
-                      child: Image.asset(
-                        'assets/images/featured-banner-1.avif',
+                      child: Image.asset('assets/images/featured-banner-1.jpg',
                         fit: BoxFit.fitWidth,
                       ),
                     ),
@@ -284,7 +283,7 @@ class HomePage extends StatelessWidget {
                   children: [
                     Positioned.fill(
                       child: Image.asset(
-                        'assets/images/featured-banner-2.avif',
+                        'assets/images/featured-banner-2.jpg',
                         fit: BoxFit.fitWidth,
                       ),
                     ),

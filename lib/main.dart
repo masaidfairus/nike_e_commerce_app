@@ -73,7 +73,7 @@ class MyApp extends StatelessWidget {
       // Daftar route/navigasi yang tersedia dalam aplikasi
       // Route adalah alamat/path ke halaman tertentu
       routes: {
-        '/home': (context) => const HomePage(), // Route ke halaman beranda
+        '/home': (context) => HomePage(), // Route ke halaman beranda
         '/profile': (context) => const ProfilePage(), // Route ke halaman profil
         '/chat-list': (context) => const ChatListPage(), // Route ke daftar chat
         '/chat-detail': (context) =>
@@ -105,7 +105,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
-    const HomePage(),
+    HomePage(),
     const ChatListPage(),
     const CartPage(),
     const ProfilePage(),
