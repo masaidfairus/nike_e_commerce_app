@@ -302,7 +302,14 @@ class _CartPageState extends State<CartPage> {
                           ),
                         ),
                         onPressed: () {
-                          // Proceed to checkout
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                '🎉 Checkout berhasil disimulasikan! Total \$${(_totalPrice + 5.99).toStringAsFixed(2)}',
+                              ),
+                              duration: const Duration(seconds: 3),
+                            ),
+                          );
                         },
                         child: const Text(
                           'Checkout',

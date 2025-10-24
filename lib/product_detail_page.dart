@@ -34,9 +34,26 @@ class ProductDetailPage extends StatelessWidget {
             actions: [
               IconButton(
                 icon: const Icon(Icons.favorite_border),
-                onPressed: () {},
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Produk ditambahkan ke Wishlist.'),
+                      duration: Duration(seconds: 1),
+                    ),
+                  );
+                },
               ),
-              IconButton(icon: const Icon(Icons.share), onPressed: () {}),
+              IconButton(
+                icon: const Icon(Icons.share),
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('Membuka dialog berbagi (simulasi).'),
+                      duration: Duration(seconds: 1),
+                    ),
+                  );
+                },
+              ),
             ],
           ),
           SliverToBoxAdapter(

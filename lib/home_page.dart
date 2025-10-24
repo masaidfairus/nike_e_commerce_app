@@ -104,7 +104,17 @@ class HomePage extends StatelessWidget {
         ),
         actions: [
           // Tombol search
-          IconButton(icon: const Icon(Icons.search), onPressed: () {}),
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Fitur Pencarian masih dalam pengembangan.'),
+                  duration: Duration(seconds: 2),
+                ),
+              );
+            },
+          ),
 
           // Tombol cart dengan badge (notifikasi jumlah item)
           IconButton(
@@ -211,7 +221,8 @@ class HomePage extends StatelessWidget {
                 child: Stack(
                   children: [
                     Positioned.fill(
-                      child: Image.asset('assets/images/featured-banner-1.jpg',
+                      child: Image.asset(
+                        'assets/images/featured-banner-1.jpg',
                         fit: BoxFit.fitWidth,
                       ),
                     ),
